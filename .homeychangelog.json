@@ -509,5 +509,8 @@
   },
   "4.4.2": {
     "en": "Updated device image."
+  },
+  "4.4.3": {
+    "en": "Authentication adjustments."
   }
 }
