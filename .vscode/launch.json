@@ -33,8 +33,18 @@
           "port": 9902,
           "localRoot": "${workspaceFolder}",
           "remoteRoot": "/app/"
-      },
-      {
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "name": "Attach Tesla to Homey SHS",
+            "address": "192.168.1.98",
+            "port": 9902,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app/"
+        },
+        {
             "type": "node",
             "request": "attach",
             "restart": true,
