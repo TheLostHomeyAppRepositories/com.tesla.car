@@ -593,12 +593,22 @@ module.exports = class TeslaApp extends TeslaOAuth2App {
       data.car.car_doors_locked = car.getCapabilityValue('car_doors_locked');
       data.car.car_sentry_mode = car.getCapabilityValue('car_sentry_mode');
       data.car.meter_car_odo = car.getCapabilityValue('meter_car_odo');
-      data.car.meter_car_odo_unit = car.getCapabilityOptions('meter_car_odo').units;
+      try{
+        data.car.meter_car_odo_unit = car.getCapabilityOptions('meter_car_odo').units;
+      }
+      catch(error){
+        data.car.meter_car_odo_unit = "";
+      }
       data.car.measure_car_tpms_pressure_fl = car.getCapabilityValue('measure_car_tpms_pressure_fl');
       data.car.measure_car_tpms_pressure_fr = car.getCapabilityValue('measure_car_tpms_pressure_fr');
       data.car.measure_car_tpms_pressure_rl = car.getCapabilityValue('measure_car_tpms_pressure_rl');
       data.car.measure_car_tpms_pressure_rr = car.getCapabilityValue('measure_car_tpms_pressure_rr');
-      data.car.measure_car_tpms_pressure_unit = car.getCapabilityOptions('measure_car_tpms_pressure_fl').units;
+      try{
+        data.car.measure_car_tpms_pressure_unit = car.getCapabilityOptions('measure_car_tpms_pressure_fl').units;
+      }
+      catch(error){
+        data.car.measure_car_tpms_pressure_unit = "";
+      }
 
       let battery = this.homey.drivers.getDriver('battery').getDevices().filter(e => {return (e.getData().id == id)})[0];
       if (battery){
@@ -606,7 +616,12 @@ module.exports = class TeslaApp extends TeslaOAuth2App {
         data.battery.measure_soc_level = battery.getCapabilityValue('measure_soc_level');
         data.battery.measure_soc_usable = battery.getCapabilityValue('measure_soc_usable');
         data.battery.measure_soc_range_estimated = Math.round(battery.getCapabilityValue('measure_soc_range_estimated'));
-        data.battery.measure_soc_range_estimated_unit = battery.getCapabilityOptions('measure_soc_range_estimated').units;
+        try{
+          data.battery.measure_soc_range_estimated_unit = battery.getCapabilityOptions('measure_soc_range_estimated').units;
+        }
+        catch(error){
+          data.battery.measure_soc_range_estimated_unit = "";          
+        }
         data.battery.battery_heater = battery.getCapabilityValue('battery_heater');
         data.battery.measure_io_battery_power = battery.getCapabilityValue('measure_io_battery_power');
         data.battery.measure_charge_limit_soc = battery.getCapabilityValue('measure_charge_limit_soc');
@@ -640,7 +655,12 @@ module.exports = class TeslaApp extends TeslaOAuth2App {
         data['climate'] = { };
         data.climate.target_temperature = climate.getCapabilityValue('target_temperature');
         data.climate.measure_temperature = climate.getCapabilityValue('measure_temperature');
-        data.climate.measure_temperature_unit = climate.getCapabilityOptions("measure_climate_temperature_in").units;
+        try{
+          data.climate.measure_temperature_unit = climate.getCapabilityOptions("measure_climate_temperature_in").units;
+        }
+        catch(error){
+          data.climate.measure_temperature_unit = "";
+        }
         data.climate.climate_ac = climate.getCapabilityValue('climate_ac');
         data.climate.climate_preconditioning = climate.getCapabilityValue('climate_preconditioning');
         data.climate.climate_defrost = climate.getCapabilityValue('climate_defrost');

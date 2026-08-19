@@ -521,5 +521,8 @@
   },
   "4.4.6": {
     "en": "Added logging."
+  },
+  "4.4.7": {
+    "en": "Fixed 'empty widget' error."
   }
 }
