@@ -622,6 +622,16 @@ module.exports = class TeslaApp extends TeslaOAuth2App {
         catch(error){
           data.battery.measure_soc_range_estimated_unit = "";          
         }
+        // Fallbbck if estimated range is not available
+        if (data.battery.measure_soc_range_estimated == undefined || data.battery.measure_soc_range_estimated == 0){
+          data.battery.measure_soc_range_estimated = Math.round(battery.getCapabilityValue('measure_soc_range_ideal'));
+          try{
+            data.battery.measure_soc_range_estimated_unit = battery.getCapabilityOptions('measure_soc_range_ideal').units;
+          }
+          catch(error){
+            data.battery.measure_soc_range_estimated_unit = "";          
+          }
+        }
         data.battery.battery_heater = battery.getCapabilityValue('battery_heater');
         data.battery.measure_io_battery_power = battery.getCapabilityValue('measure_io_battery_power');
         data.battery.measure_charge_limit_soc = battery.getCapabilityValue('measure_charge_limit_soc');

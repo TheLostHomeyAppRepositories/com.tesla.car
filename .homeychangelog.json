@@ -524,5 +524,8 @@
   },
   "4.4.7": {
     "en": "Fixed 'empty widget' error."
+  },
+  "4.4.8": {
+    "en": "Fallback for missing battery range value in widget."
   }
 }
